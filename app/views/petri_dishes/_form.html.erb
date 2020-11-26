@@ -1,0 +1,27 @@
+<%= form_with(model: petri_dish, local: true) do |form| %>
+  <% if petri_dish.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(petri_dish.errors.count, "error") %> prohibited this petri_dish from being saved:</h2>
+
+      <ul>
+        <% petri_dish.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mushroom_id %>
+    <%= form.text_field :mushroom_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

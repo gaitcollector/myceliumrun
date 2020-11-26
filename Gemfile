@@ -54,3 +54,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "strong_versions", "~> 0.4.5", :group => :development
+
+#My gems
+gem 'nested_scaffold','~> 1.1'
+
+
+gem 'devise'
+gem 'devise-pwned_password'
+gem 'gravatar_image_tag'
+gem "stimulus_reflex", "~> 3.3"

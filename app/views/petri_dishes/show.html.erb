@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mushroom:</strong>
+  <%= @petri_dish.mushroom.name%>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @petri_dish.name %>
+</p>
+
+
+<%= link_to(@petri_dish.name, target: "_blank") %><br/>
+<small>Created <%= time_ago_in_words(@petri_dish.created_at) %> ago</small>
+
+<h3>Log book:</h3>
+<ul>
+  <%= render(partial: 'logs/log', collection: @petri_dish.logs.sort.reverse) %>
+</ul>
+
+<%= form_for [@petri_dish, Log.new] do |f| %>
+<%= f.text_area :body, placeholder: "Add a log entry" %><br/>
+<%= f.submit "Submit" %>
+<% end %>
+
+
+<%= link_to 'Edit', edit_petri_dish_path(@petri_dish) %> |
+<%= link_to 'Back', petri_dishes_path %>
