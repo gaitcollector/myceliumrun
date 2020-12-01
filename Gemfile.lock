@@ -232,6 +232,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (~> 1.5)
   byebug (~> 11.1)
+  cable_ready (~> 4.4)
   capybara (~> 3.33)
   devise
   devise-pwned_password
@@ -241,6 +242,7 @@ DEPENDENCIES
   nested_scaffold (~> 1.1)
   puma (~> 4.1)
   rails (~> 6.0)
+  redis (~> 4.2)
   sass-rails (~> 6.0)
   selenium-webdriver (~> 3.142)
   spring (~> 2.1)

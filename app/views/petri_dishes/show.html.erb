@@ -1,28 +1,74 @@
-<p id="notice"><%= notice %></p>
+<div class='list-group m-2'>
+  <h6>Petri dish: <%= @petri_dish.name %> </h6>
+  <h6>From mushroom: <%= @petri_dish.mushroom.name %></h6>
+  <small class="card-text m-1 text-small text-muted">Created <%= time_ago_in_words(@petri_dish.created_at) %> ago</small>
 
-<p>
-  <strong>Mushroom:</strong>
-  <%= @petri_dish.mushroom.name%>
-</p>
-<p>
-  <strong>Name:</strong>
-  <%= @petri_dish.name %>
-</p>
+  <%= form_for [@petri_dish, Log.new] do |f| %>
+    <small class="card-title m-1">Logbook:</small>
+    <div class="input-group-sm m-1">
+      <%= f.text_area :body, placeholder: "Add a log entry", class: "form-control", rows: 1 %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Submit", class:"btn-small btn-primary m-1" %>
+    </div>
+  <% end %>
 
+  <div>
+    <%= render(partial: 'logs/log', collection: @petri_dish.logs.sort.reverse) %>
+  </div>
+  <div class='card-subtitle d-flex justify-content-between m-2'>
+    <%= link_to 'Edit', edit_petri_dish_path(@petri_dish), class: " btn btn-primary btn-sm"%>
+    <%= link_to 'Destroy', @petri_dish, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-primary btn-sm"%>
+    <%= link_to 'Back', petri_dishes_path, class: " btn btn-primary btn-sm"%>
+  </div>
 
-<%= link_to(@petri_dish.name, target: "_blank") %><br/>
-<small>Created <%= time_ago_in_words(@petri_dish.created_at) %> ago</small>
-
-<h3>Log book:</h3>
-<ul>
-  <%= render(partial: 'logs/log', collection: @petri_dish.logs.sort.reverse) %>
-</ul>
-
-<%= form_for [@petri_dish, Log.new] do |f| %>
-<%= f.text_area :body, placeholder: "Add a log entry" %><br/>
-<%= f.submit "Submit" %>
-<% end %>
-
-
-<%= link_to 'Edit', edit_petri_dish_path(@petri_dish) %> |
-<%= link_to 'Back', petri_dishes_path %>
+  <%# If buttons logic  %>
+  <li class='list-group-item'>
+    <div class="d-flex justify-content-between">
+      <p><b>Inoculated:</b>
+        <% if @petri_dish.inoculated? %>
+        <small><%= time_ago_in_words @petri_dish.inoculated_at %> ago</small>
+          <%= link_to '#', class: 'btn btn-success', data: { reflex: 'click->PetriDish#mark_not_inoculated', id: @petri_dish.id } do %>
+          <i class='fa fa-check'></i>
+          <% end %>
+          <li class='list-group-item'>
+            <div class="d-flex justify-content-between">
+                <p><b>Run started:</b>
+                  <% if @petri_dish.run_started? %>
+                  <small><%= time_ago_in_words @petri_dish.run_started_at %> ago</small>
+                    <%= link_to '#', class: 'btn btn-success', data: { reflex: 'click->PetriDish#mark_not_started', id: @petri_dish.id } do %>
+                    <i class='fa fa-check'></i>
+                    <% end %>
+                    <li class='list-group-item'>
+                        <div class="d-flex justify-content-between">
+                          <p><b>Fully colonised:</b>
+                            <% if @petri_dish.fully_colonized? %>
+                            <small><%= time_ago_in_words @petri_dish.fully_colonized_at %> ago</small>
+                              <%= link_to '#', class: 'btn btn-success', data: { reflex: 'click->PetriDish#mark_not_fully_colonized', id: @petri_dish.id } do %>
+                              <i class='fa fa-check'></i>
+                              <% end %>
+                            <% else %>
+                              <%= link_to '#', class: 'btn btn-dark', data: { reflex: 'click->PetriDish#mark_fully_colonized', id: @petri_dish.id } do %>
+                              <i class='fa fa-check'></i>
+                              <% end %>
+                            <% end %>
+                          </p>
+                        </div>
+                      </li>
+                  <% else %>
+                    <%= link_to '#', class: 'btn btn-dark', data: { reflex: 'click->PetriDish#mark_started', id: @petri_dish.id } do %>
+                    <i class='fa fa-check'></i>
+                    <% end %>
+                  <% end %>
+                </p>
+              </div>
+          </li>
+        <% else %>
+          <%= link_to '#', class: 'btn btn-dark', data: { reflex: 'click->PetriDish#mark_inoculated', id: @petri_dish.id } do %>
+          <i class='fa fa-check'></i>
+          <% end %>
+        <% end %>
+      </p>
+    </div>
+  </li>
+<div>

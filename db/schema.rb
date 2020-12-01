@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 2020_11_26_072627) do
 
   create_table "petri_dishes", force: :cascade do |t|
     t.string "name"
+    t.text "recipe"
+    t.boolean "inoculated"
+    t.datetime "inoculated_at"
+    t.boolean "run_started"
+    t.datetime "run_started_at"
+    t.boolean "fully_colonized"
+    t.datetime "fully_colonized_at"
     t.integer "mushroom_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -1,7 +1,8 @@
-<li>
-  <%= log.body %> -
-  <small>Submitted <%= time_ago_in_words(log.created_at) %> ago</small>
+<div>
+  <small class="card-text m-1 text-small"> <%= log.body %> </small>
+  <small class="card-text m-1 text-small text-muted">posted <%= time_ago_in_words(log.created_at) %> ago</small>
 
 
 
-</li>
+
+</div>
