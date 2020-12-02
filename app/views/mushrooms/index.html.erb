@@ -1,27 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class='card-header d-flex justify-content-between'>
+  Mushrooms
+  <%= link_to "new", new_mushroom_path, class: " btn btn-primary btn-sm" %>
+</div>
 
-<h1>Mushrooms</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @mushrooms.each do |mushroom| %>
-      <tr>
-        <td><%= mushroom.name %></td>
-        <td><%= link_to 'Show', mushroom %></td>
-        <td><%= link_to 'Edit', edit_mushroom_path(mushroom) %></td>
-        <td><%= link_to 'Destroy', mushroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<% @mushrooms.each do |mushroom| %>
+<div class="card-container">
+  <div class="card">
+    <div class="card-content">
+      <h4><%= mushroom.name %></h4>
+    </div>
+    <div class="card-footer">
+      put some code
+    </div>
+    <div class="card-each">
+      <ul>
+        <li class="chore-name">put some code</li>
+        <li>Dear: <span class="color-tone-up">put some code</li>
+        <li> put some code</li>
+        <li><%= link_to 'Show', mushroom, class: " btn btn-primary btn-sm" %></li>
+        <li><%= link_to 'Edit', edit_mushroom_path(mushroom), class: " btn btn-primary btn-sm" %></li>
+        <li><%= link_to 'Destroy', mushroom, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-primary btn-sm" %></li>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+</div>
 
-<%= link_to 'New Mushroom', new_mushroom_path %>
+
+
+

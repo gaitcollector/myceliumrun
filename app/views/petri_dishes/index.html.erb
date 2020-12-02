@@ -5,14 +5,24 @@
   <%= link_to "new", new_petri_dish_path, class: " btn btn-primary btn-sm" %>
 </div>
 
-<ul class='list-group'>
-  <% @petri_dishes.each do |petri_dish| %>
-    <li class='list-group-item d-flex justify-content-between'>
-      <div> <%= link_to petri_dish.name, petri_dish %> </div>
-      <div>From mushroom: <%=petri_dish.mushroom.name%> </div>
-    </li>
+
+<% @petri_dishes.each do |petri_dish| %>
+<div class="card-container">
+  <div class="card">
+    <div class="card-content">
+      <h4><%= link_to petri_dish.name, petri_dish %></h4>
+    </div>
+    <div class="card-footer">
+      From mushroom: <%=petri_dish.mushroom.name%>
+    </div>
+    <div class="card-each">
+      <ul>
+        <li class="chore-name">put some code</li>
+        <li>Dear: <span class="color-tone-up">put some code</li>
+        <li> put some code</li>
+      </ul>
+    </div>
+  </div>
   <% end %>
-</ul>
-
-
+</div>
 

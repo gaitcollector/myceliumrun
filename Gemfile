@@ -64,3 +64,4 @@ gem 'gravatar_image_tag'
 gem "redis", "~> 4.2"
 gem "cable_ready", "~> 4.4"
 gem "stimulus_reflex", "~> 3.3"
+gem 'font-awesome-sass', '~> 5.15.1'
