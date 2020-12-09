@@ -1,35 +1,101 @@
 
-<div class="card-container">
-  <div class="card">
-    <div class="card-content">
-      <h4><%= @petri_dish.name %></h4>
-      <h6>From mushroom: <%= @petri_dish.mushroom.name %></h6>
-      <small class="card-text m-1 text-small text-muted">Created <%= time_ago_in_words(@petri_dish.created_at) %> ago</small>
-    </div>
-    <div class="card-footer">
-      <%# If buttons logic  %>
-      <%= render(partial: 'progress') %>
-    </div>
 
-    <div class="card-each">
-      <ul>
-        <li><span class="color-tone-up">
-          <%= form_for [@petri_dish, Log.new] do |f| %>
-          <div class="input-group mb-4">
-            <%= f.text_area :body, placeholder: "Add a log entry", class: "form-control", rows: 1 %>
-            <div class="actions">
-              <%= f.submit "Add", class:"btn btn-primary input-group-btn" %>
-            </div>
+<div class="header">
+  <h5 class=" m-1 text-small"> Petri dish name: <%= @petri_dish.name %></h5>
+  <h6 class=" m-1 text-small text-muted">From <%= @petri_dish.mushroom.name %> mushroom</h6>
+  <h6 class=" m-1 text-small text-muted">Created <%= time_ago_in_words(@petri_dish.created_at) %> ago</h6>
+  <div>
+    <%= link_to 'Edit', edit_petri_dish_path(@petri_dish), class: " btn btn-secondary btn-sm"%>
+    <%= link_to 'Destroy', @petri_dish, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-secondary btn-sm"%>
+    <%= link_to 'Back', petri_dishes_path, class: " btn btn-secondary btn-sm"%>
+  </div>
+</div>
+<div class="infotabs">
+  <article class="tabs">
+
+      <input checked id="one" name="tabs" type="radio">
+        <label for="one">Description</label>
+
+        <input id="two" name="tabs" type="radio" value="Two">
+        <label for="two">Agar recipe</label>
+
+        <input id="three" name="tabs" type="radio">
+        <label for="three">Proticol</label>
+
+        <input id="four" name="tabs" type="radio">
+        <label for="four">Options</label>
+
+        <div class="panels">
+
+          <div class="panel">
+            <h2>Description</h2>
+            <p>Lorem ipsum dolor sit amet</p>
+
+            <p>Aliquam vitae leo et</p>
+
+            <p>Nam sodales,</p>
           </div>
-          <% end %>
-        </li>
-        <li class="chore-name"><%= render(partial: 'logs/log', collection: @petri_dish.logs.sort.reverse) %></li>
-        <li> put some code</li>
-        <%= link_to 'Edit', edit_petri_dish_path(@petri_dish), class: " btn btn-primary btn-sm"%>
-        <%= link_to 'Destroy', @petri_dish, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-primary btn-sm"%>
-        <%= link_to 'Back', petri_dishes_path, class: " btn btn-primary btn-sm"%>
-      </ul>
+
+          <div class="panel">
+            <h2>Agar recipe</h2>
+            <p>Aliquam vitae leo et .</p>
+
+            <p>Nam sodales, mi </p>
+          </div>
+
+          <div class="panel">
+            <h2>Protocol</h2>
+            <p>Nam sodales, mi eu</p>
+
+            <p>Lorem . Sed vel felis velit. Nullam et turpis sed dui auctor vehicula quis a dui.</p>
+
+            <p>Aliquam vitae leo et </p>
+          </div>
+
+          <div class="panel">
+            <h2>Options</h2>
+            <div>
+              <%= link_to 'Edit', edit_petri_dish_path(@petri_dish), class: " btn btn-secondary btn-sm"%>
+              <%= link_to 'Destroy', @petri_dish, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-secondary btn-sm"%>
+              <%= link_to 'Back', petri_dishes_path, class: " btn btn-secondary btn-sm"%>
+            </div>
+
+            <p>Aliquam vitae leo et sapien </p>
+          </div>
+
+      </div>
+  </article>
+</div>
+
+
+</div>
+<div class="right-bar">
+  <div class="top-part">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-users">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+    <div class="count">6</div>
+  </div>
+  <div class="header">
+    <h4>Logbook</h4>
+  </div>
+  <div class="right-content">
+    <%= render(partial: 'logs/log', collection: @petri_dish.logs.sort.reverse) %>
+  </div>
+  <div class="logbook">
+    <div class="">
+      <%= form_for [@petri_dish, Log.new] do |f| %>
+        <div class="input-group">
+          <%= f.text_area :body, placeholder: "Add a log entry", class: "input-text", rows: 1 %>
+          <div class="">
+            <%= f.submit "Add", class:"btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-
 </div>

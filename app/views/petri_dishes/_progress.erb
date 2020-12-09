@@ -1,50 +1,47 @@
 <div>
-    <li class='list-group-item'>
-      <div class="d-flex justify-content-between">
-        <p><b>Inoculated:</b>
+    <div class='card-content d-flex'>
+      <div class="card-content">
+        <p><small>Inoculated:</small>
           <% if @petri_dish.inoculated? %>
-          <small><%= time_ago_in_words @petri_dish.inoculated_at %> ago</small>
-            <%= link_to '#', class: 'btn btn-success', data: { reflex: 'click->PetriDish#mark_not_inoculated', id: @petri_dish.id } do %>
-            <i class='fa fa-check'></i>
+            <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_inoculated', id: @petri_dish.id } do %>
+            <i class="fas fa-circle"></i>
             <% end %>
-            <li class='list-group-item'>
-              <div class="d-flex justify-content-between">
-                  <p><b>Run started:</b>
+            <li class='card-content'>
+              <div class="card-content">
+                  <div><small>Run started:</small>
                     <% if @petri_dish.run_started? %>
-                    <small><%= time_ago_in_words @petri_dish.run_started_at %> ago</small>
-                      <%= link_to '#', class: 'btn btn-success', data: { reflex: 'click->PetriDish#mark_not_started', id: @petri_dish.id } do %>
-                      <i class='fa fa-check'></i>
+                      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_started', id: @petri_dish.id } do %>
+                      <i class='fas fa-circle'></i>
                       <% end %>
-                      <li class='list-group-item'>
-                          <div class="d-flex justify-content-between">
-                            <p><b>Fully colonised:</b>
+                      <li class='card-content'>
+                          <div class="card-content">
+                            <div><small>Fully colonised:</small>
                               <% if @petri_dish.fully_colonized? %>
-                              <small><%= time_ago_in_words @petri_dish.fully_colonized_at %> ago</small>
-                                <%= link_to '#', class: 'btn btn-success', data: { reflex: 'click->PetriDish#mark_not_fully_colonized', id: @petri_dish.id } do %>
-                                <i class='fa fa-check'></i>
+                                <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_fully_colonized', id: @petri_dish.id } do %>
+                                <i class='fas fa-circle'></i>
                                 <% end %>
                               <% else %>
-                                <%= link_to '#', class: 'btn btn-dark', data: { reflex: 'click->PetriDish#mark_fully_colonized', id: @petri_dish.id } do %>
-                                <i class='fa fa-check'></i>
+                                <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_fully_colonized', id: @petri_dish.id } do %>
+                                <i class='fas fa-times'></i>
                                 <% end %>
                               <% end %>
-                            </p>
+                            </div>
                           </div>
                         </li>
                     <% else %>
-                      <%= link_to '#', class: 'btn btn-dark', data: { reflex: 'click->PetriDish#mark_started', id: @petri_dish.id } do %>
-                      <i class='fa fa-check'></i>
+                      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_started', id: @petri_dish.id } do %>
+                      <i class='fas fa-times'></i>
                       <% end %>
                     <% end %>
-                  </p>
+                  </div>
                 </div>
             </li>
           <% else %>
-            <%= link_to '#', class: 'btn btn-dark', data: { reflex: 'click->PetriDish#mark_inoculated', id: @petri_dish.id } do %>
-            <i class='fa fa-check'></i>
+            <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_inoculated', id: @petri_dish.id } do %>
+            <i class='fas fa-times'></i>
             <% end %>
           <% end %>
         </p>
       </div>
-    </li>
+    </div>
   </div>

@@ -5,23 +5,54 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= action_cable_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-
-
-  <body class="global">
-    <div class="app">
-
-    <div class="app-content">
-
-      <%= yield %>
-
+  <body>
+    <div class="task-manager">
+      <div class="left-bar">
+        <div class="upper-part">
+        </div>
+        <div class="left-content">
+          <ul class="action-list">
+            <li class="item">
+              <span><%= link_to 'Home', root_path %></span>
+            </li>
+            <li class="item">
+              <span><%= link_to 'Mushrooms', mushrooms_path %></span>
+            </li>
+            <li class="item">
+              <span><%= link_to 'Petri Dishes', petri_dishes_path %></span>
+            </li>
+            <li class="item"
+              <span>Spawn</span>
+            </li>
+            <li class="item">
+              <span>Grow Runs</span>
+            </li>
+            <li class="item">
+              <span>Recipes</span>
+            </li>
+          </ul>
+          <ul class="category-list">
+            <li class="item">
+              <span>Cookbook</span>
+            </li>
+            <li class="item">
+              <span>Protocols</span>
+            </li>
+            <li class="item">
+              <span>Something else</span>
+            </li>
+            <li class="item">
+              <span>Something else</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="page-content">
+        <%= yield %>
+      </div>
     </div>
-
-    </div>
-
   </body>
 </html>

@@ -4,31 +4,17 @@
 </div>
 
 
-
-
-<% @mushrooms.each do |mushroom| %>
-<div class="card-container">
-  <div class="card">
-    <div class="card-content">
-      <h4><%= mushroom.name %></h4>
+<div class="container">
+  <% @mushrooms.each do |mushroom| %>
+    <div class="d-flex flex-column">
+      <div class="task-box yellow">
+        <div class="description-task">
+          <div class="time">added <%= time_ago_in_words(mushroom.created_at) %> ago</div>
+          <div class="text-decoration-none"><%= link_to mushroom.name, mushroom %></div>
+        </div>
+        <div class="more-button"></div>
     </div>
-    <div class="card-footer">
-      put some code
-    </div>
-    <div class="card-each">
-      <ul>
-        <li class="chore-name">put some code</li>
-        <li>Dear: <span class="color-tone-up">put some code</li>
-        <li> put some code</li>
-        <li><%= link_to 'Show', mushroom, class: " btn btn-primary btn-sm" %></li>
-        <li><%= link_to 'Edit', edit_mushroom_path(mushroom), class: " btn btn-primary btn-sm" %></li>
-        <li><%= link_to 'Destroy', mushroom, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-primary btn-sm" %></li>
-      </ul>
-    </div>
-  </div>
   <% end %>
 </div>
-
-
 
 

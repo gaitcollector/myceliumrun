@@ -1,8 +1,9 @@
-<div>
-  <small class="card-text m-1 text-small"> <%= log.body %> </small>
-  <small class="card-text m-1 text-small text-muted">posted <%= time_ago_in_words(log.created_at) %> ago</small>
 
 
-
-
+<div class="task-box yellow">
+  <div class="description-task">
+    <div class="time">added <%= time_ago_in_words(log.created_at) %> ago</div>
+    <small class="task-name"><%= log.body %></small>
+  </div>
+  <div class="more-button"></div>
 </div>
