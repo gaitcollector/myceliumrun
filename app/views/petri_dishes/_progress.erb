@@ -1,20 +1,20 @@
 <div>
-    <div class='card-content d-flex'>
-      <div class="card-content">
+    <div>
+      <div>
         <p><small>Inoculated:</small>
           <% if @petri_dish.inoculated? %>
             <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_inoculated', id: @petri_dish.id } do %>
             <i class="fas fa-circle"></i>
             <% end %>
-            <li class='card-content'>
-              <div class="card-content">
+            <li>
+              <div>
                   <div><small>Run started:</small>
                     <% if @petri_dish.run_started? %>
                       <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_started', id: @petri_dish.id } do %>
                       <i class='fas fa-circle'></i>
                       <% end %>
-                      <li class='card-content'>
-                          <div class="card-content">
+                      <li>
+                          <div>
                             <div><small>Fully colonised:</small>
                               <% if @petri_dish.fully_colonized? %>
                                 <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_fully_colonized', id: @petri_dish.id } do %>

@@ -4,47 +4,51 @@
   <h5 class=" m-1 text-small"> Petri dish name: <%= @petri_dish.name %></h5>
   <h6 class=" m-1 text-small text-muted">From <%= @petri_dish.mushroom.name %> mushroom</h6>
   <h6 class=" m-1 text-small text-muted">Created <%= time_ago_in_words(@petri_dish.created_at) %> ago</h6>
-  <div>
-    <%= link_to 'Edit', edit_petri_dish_path(@petri_dish), class: " btn btn-secondary btn-sm"%>
-    <%= link_to 'Destroy', @petri_dish, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-secondary btn-sm"%>
-    <%= link_to 'Back', petri_dishes_path, class: " btn btn-secondary btn-sm"%>
-  </div>
+            <p><% if @petri_dish.inoculated? %>
+              <h6 class=" m-1 text-small text-muted">Inoculated <%= time_ago_in_words @petri_dish.inoculated_at %> ago</h6>
+              <%end%>
+            </p>
+            <p>
+            <% if @petri_dish.run_started? %>
+              <h6 class=" m-1 text-small text-muted">Run started <%= time_ago_in_words @petri_dish.run_started_at %> ago</h6>
+            <%end%>
+            </p>
+            <p>
+              <% if @petri_dish.fully_colonized? %>
+              <h6 class=" m-1 text-small text-muted">Fully colonized <%= time_ago_in_words @petri_dish.fully_colonized_at %> ago</h6>
+              <%end%>
+            </p>
 </div>
 <div class="infotabs">
   <article class="tabs">
 
-      <input checked id="one" name="tabs" type="radio">
-        <label for="one">Description</label>
+      <input class="infobar" checked id="one" name="tabs" type="radio">
+        <label class="infolabel" for="one">Progress</label>
 
-        <input id="two" name="tabs" type="radio" value="Two">
-        <label for="two">Agar recipe</label>
+        <input class="infobar" id="two" name="tabs" type="radio" value="Two">
+        <label class="infolabel" for="two">Description</label>
 
-        <input id="three" name="tabs" type="radio">
-        <label for="three">Proticol</label>
+        <input class="infobar" id="three" name="tabs" type="radio">
+        <label class="infolabel" for="three">Agar recipe</label>
 
-        <input id="four" name="tabs" type="radio">
-        <label for="four">Options</label>
+        <input class="infobar" id="four" name="tabs" type="radio">
+        <label class="infolabel" for="four">Options</label>
 
         <div class="panels">
 
           <div class="panel">
+            <h2>Progress</h2>
+
+          </div>
+
+          <div class="panel">
             <h2>Description</h2>
-            <p>Lorem ipsum dolor sit amet</p>
-
-            <p>Aliquam vitae leo et</p>
-
-            <p>Nam sodales,</p>
+            <p>Description of petri dish</p>
+            <p>Protocol</p>
           </div>
 
           <div class="panel">
             <h2>Agar recipe</h2>
-            <p>Aliquam vitae leo et .</p>
-
-            <p>Nam sodales, mi </p>
-          </div>
-
-          <div class="panel">
-            <h2>Protocol</h2>
             <p>Nam sodales, mi eu</p>
 
             <p>Lorem . Sed vel felis velit. Nullam et turpis sed dui auctor vehicula quis a dui.</p>
@@ -99,3 +103,4 @@
     </div>
   </div>
 </div>
+

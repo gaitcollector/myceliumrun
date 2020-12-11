@@ -14,8 +14,8 @@
         <div class="task-box yellow">
           <div class="description-task">
             <div class="time">created <%= time_ago_in_words(petri_dish.created_at) %> ago</div>
-            <div class="text-decoration-none"><%= link_to petri_dish.name, petri_dish %></div>
-            <small class="time">From mushroom: <%=petri_dish.mushroom.name%></small>
+            <div><%= link_to petri_dish.name, petri_dish %></div>
+            <small class="time">From <%=petri_dish.mushroom.name%> mushroom</small>
           </div>
         </div>
     </div>

@@ -169,21 +169,6 @@ button {
   }
 }
 
-.circle {
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  background-color: #fe4d46;
-  box-shadow: 14px 0 0 0 #fbc023, 28px 0 0 0 #7dd21f;
-}
-
-.circle-2 {
-  border-radius: 50%;
-  width: 4px;
-  height: 4px;
-  background-color: #d5d7e3;
-  box-shadow: -6px 0 0 0 #d5d7e3, 6px 0 0 0 #d5d7e3;
-}
 
 .right-bar {
   width: 320px;
@@ -228,6 +213,8 @@ button {
   flex: 1;
 }
 
+
+//Log bubbles
 .task-box {
   position: relative;
   border-radius: 12px;
@@ -241,18 +228,16 @@ button {
   background: #beb4a7;
   box-shadow: 9px 9px 28px #b1a79b,
   -9px -9px 28px #cbc1b3;
-
-  // &:hover {
-  //   transform: scale(1.02);
-  // }
 }
 
+//log added time
 .time {
   margin-bottom: 6px;
   opacity: 0.4;
   font-size: 10px;
 }
 
+//log bubble text
 .task-name {
   font-size: 11px;
   font-weight: 500;
@@ -264,38 +249,12 @@ button {
   background-color: #d7cdc1;
 }
 
-
-.more-button {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background-color: #8e92a4;
-  box-shadow: 0 -4px 0 0 #8e92a4, 0 4px 0 0 #8e92a4;
-  opacity: 0.4;
-  right: 20px;
-  top: 30px;
-  cursor: pointer;
-}
-
-.members {
-  display: flex;
-  margin-top: 14px;
-
-  img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    margin-right: 4px;
-    object-fit: cover;
-  }
-}
-
+//mig part content layout
 .page-content {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 20px;
+  padding-left: 20px;
 
   .header {
     font-size: 20px;
@@ -304,27 +263,10 @@ button {
   }
 }
 
-.content-categories {
-  display: block;
-  justify-content: center;
-  width: 100%;
-  border-bottom: 1px solid #CDC2B4;
-  padding: 10px 0;
-  margin-top: 10px;
-}
-
 .nav-item {
   display: none;
 }
 
-// .category {
-//   font-weight: 500;
-//   color: var(--secondary-color);
-//   border-bottom: 1px solid #CDC2B4;
-//   transition: .4s ease-in;
-//   padding: 20px 30px;
-//   cursor: pointer;
-// }
 
 #opt-1:checked+label,
 #opt-2:checked+label,
@@ -337,12 +279,7 @@ button {
 .task-item {
   display: none;
 }
-.infotabs {
-  padding: 10px 0;
-  flex: 1;
-  overflow-y: auto;
-  height: 100%;
-}
+
 
 .tasks-wrapper {
   padding: 10px 0;
@@ -423,12 +360,6 @@ label .label-text:before {
   }
 }
 
-.upcoming {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
-  margin-top: auto;
-}
 
 @media screen and (max-width: 900px) {
   .left-bar {
@@ -514,19 +445,25 @@ padding-top: 10px;
   margin: auto;
   padding: 10px;
 }
+.infotabs {
+  padding: 10px 0;
+  flex: 1;
+  overflow-y: auto;
+  height: 100%;
+}
 
-input {
+.infobar {
   opacity: 0;
 }
 
-label {
+.infolabel {
   cursor: pointer;
   background: #A9A196;
   color: #eee;
   border-radius: 12px;
   padding: 1.5% 3%;
   float: left;
-  margin-right: 1px;
+  margin: 1px;
 }
 
 label:hover {
@@ -557,6 +494,7 @@ input:checked+label {
 }
 
 .panel {
+  margin-top: 8px;
   width: 84%;
   opacity: 0;
   position: absolute;
