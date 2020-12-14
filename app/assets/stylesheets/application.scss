@@ -49,6 +49,8 @@ $foot: #9F8973;
 a {
   text-decoration: none;
   color: #B9B0A4;
+  &:hover {
+    color: #706658;}
 }
 
 html {
