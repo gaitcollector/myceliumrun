@@ -95,7 +95,7 @@
       <%= form_for [@petri_dish, Log.new] do |f| %>
         <div class="input-group">
           <%= f.text_area :body, placeholder: "Add a log entry", class: "input-text", rows: 1 %>
-          <div class="">
+          <div class="input-group">
             <%= f.submit "Add", class:"btn btn-primary" %>
           </div>
         </div>

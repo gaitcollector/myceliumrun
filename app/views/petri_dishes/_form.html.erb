@@ -1,7 +1,7 @@
 
   <div>
     <%= simple_form_for [@petri_dish] do |f|%>
-      <%= f.input :name %>
+      <%= f.input :name, class: "input" %>
       <%= f.input :mushroom_id, as: :select, collection: Mushroom.all.sort.reverse, prompt: 'Select your mushroom', label: false %>
       <%= f.button :submit, value: 'Add', class: 'btn btn-primary btn-block' %>
     <% end %>
