@@ -57,13 +57,13 @@ gem "strong_versions", "~> 0.4.5", :group => :development
 gem 'nested_scaffold','~> 1.1'
 
 
-gem 'devise'
-gem 'devise-pwned_password'
-gem 'gravatar_image_tag'
+gem 'devise', '~> 4.7'
+gem 'devise-pwned_password','~> 0.1.9'
+gem 'gravatar_image_tag','~> 1.2'
 
 gem "redis", "~> 4.2"
 gem "cable_ready", "~> 4.4"
 gem "stimulus_reflex", "~> 3.3"
-gem 'font-awesome-sass', '~> 5.15.1'
-gem 'jquery-rails'
-gem 'simple_form'
+gem 'font-awesome-sass', '~> 5.15'
+gem 'jquery-rails','~> 4.4'
+gem 'simple_form','~> 5.0'

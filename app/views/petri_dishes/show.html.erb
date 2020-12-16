@@ -4,20 +4,60 @@
   <h5 class=" m-1 text-small"> Petri dish name: <%= @petri_dish.name %></h5>
   <h6 class=" m-1 text-small text-muted">From <%= @petri_dish.mushroom.name %> mushroom</h6>
   <h6 class=" m-1 text-small text-muted">Created <%= time_ago_in_words(@petri_dish.created_at) %> ago</h6>
-            <p><% if @petri_dish.inoculated? %>
-              <h6 class=" m-1 text-small text-muted">Inoculated <%= time_ago_in_words @petri_dish.inoculated_at %> ago</h6>
-              <%end%>
-            </p>
-            <p>
-            <% if @petri_dish.run_started? %>
-              <h6 class=" m-1 text-small text-muted">Run started <%= time_ago_in_words @petri_dish.run_started_at %> ago</h6>
-            <%end%>
-            </p>
-            <p>
-              <% if @petri_dish.fully_colonized? %>
-              <h6 class=" m-1 text-small text-muted">Fully colonized <%= time_ago_in_words @petri_dish.fully_colonized_at %> ago</h6>
-              <%end%>
-            </p>
+  <div>
+    <p class=" m-1 text-small text-muted">Inoculated <% if @petri_dish.inoculated? %>
+      <%= time_ago_in_words @petri_dish.inoculated_at %> ago
+      <%end%>
+    </p>
+    <p class=" m-1 text-small text-muted">Run started
+    <% if @petri_dish.run_started? %>
+      <%= time_ago_in_words @petri_dish.run_started_at %> ago
+    <%end%>
+    </p>
+    <p class=" m-1 text-small text-muted">Fully colonized
+      <% if @petri_dish.fully_colonized? %>
+        <%= time_ago_in_words @petri_dish.fully_colonized_at %> ago
+      <%end%>
+    </p>
+  </div>
+  <div>
+    <%= link_to 'Edit', edit_petri_dish_path(@petri_dish), class: " btn btn-secondary btn-sm"%>
+    <%= link_to 'Destroy', @petri_dish, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-secondary btn-sm"%>
+    <%= link_to 'Back', petri_dishes_path, class: " btn btn-secondary btn-sm"%>
+  </div>
+  <div>
+    <% if @petri_dish.inoculated? %>
+      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_inoculated', id: @petri_dish.id } do %>
+      <i class="fas fa-circle"></i>
+      <% end %>
+    <% else %>
+      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_inoculated', id: @petri_dish.id } do %>
+      <i class='fas fa-times'></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <% if @petri_dish.run_started? %>
+      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_started', id: @petri_dish.id } do %>
+      <i class="fas fa-circle"></i>
+      <% end %>
+    <% else %>
+      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_started', id: @petri_dish.id } do %>
+      <i class='fas fa-times'></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <% if @petri_dish.fully_colonized? %>
+      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_fully_colonized', id: @petri_dish.id } do %>
+      <i class="fas fa-circle"></i>
+      <% end %>
+    <% else %>
+      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_fully_colonized', id: @petri_dish.id } do %>
+      <i class='fas fa-times'></i>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 <div class="infotabs">
   <article class="tabs">
@@ -58,11 +98,7 @@
 
           <div class="panel">
             <h2>Options</h2>
-            <div>
-              <%= link_to 'Edit', edit_petri_dish_path(@petri_dish), class: " btn btn-secondary btn-sm"%>
-              <%= link_to 'Destroy', @petri_dish, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-secondary btn-sm"%>
-              <%= link_to 'Back', petri_dishes_path, class: " btn btn-secondary btn-sm"%>
-            </div>
+
 
             <p>Aliquam vitae leo et sapien </p>
           </div>

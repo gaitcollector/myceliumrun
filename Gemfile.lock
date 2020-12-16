@@ -243,12 +243,12 @@ DEPENDENCIES
   byebug (~> 11.1)
   cable_ready (~> 4.4)
   capybara (~> 3.33)
-  devise
-  devise-pwned_password
-  font-awesome-sass (~> 5.15.1)
-  gravatar_image_tag
+  devise (~> 4.7)
+  devise-pwned_password (~> 0.1.9)
+  font-awesome-sass (~> 5.15)
+  gravatar_image_tag (~> 1.2)
   jbuilder (~> 2.7)
-  jquery-rails
+  jquery-rails (~> 4.4)
   listen (~> 3.2)
   nested_scaffold (~> 1.1)
   puma (~> 4.1)
@@ -256,7 +256,7 @@ DEPENDENCIES
   redis (~> 4.2)
   sass-rails (~> 6.0)
   selenium-webdriver (~> 3.142)
-  simple_form
+  simple_form (~> 5.0)
   spring (~> 2.1)
   spring-watcher-listen (~> 2.0)
   sqlite3 (~> 1.4)
