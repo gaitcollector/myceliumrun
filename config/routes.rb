@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :agar_recipes
   resources :petri_dishes do
     resources :logs
   end

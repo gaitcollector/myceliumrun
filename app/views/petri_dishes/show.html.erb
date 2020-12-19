@@ -5,68 +5,69 @@
   <h6 class=" m-1 text-small text-muted">From <%= @petri_dish.mushroom.name %> mushroom</h6>
   <h6 class=" m-1 text-small text-muted">Created <%= time_ago_in_words(@petri_dish.created_at) %> ago</h6>
   <div>
-    <p class=" m-1 text-small text-muted">Inoculated <% if @petri_dish.inoculated? %>
-      <%= time_ago_in_words @petri_dish.inoculated_at %> ago
-      <%end%>
-    </p>
-    <p class=" m-1 text-small text-muted">Run started
-    <% if @petri_dish.run_started? %>
-      <%= time_ago_in_words @petri_dish.run_started_at %> ago
-    <%end%>
-    </p>
-    <p class=" m-1 text-small text-muted">Fully colonized
-      <% if @petri_dish.fully_colonized? %>
-        <%= time_ago_in_words @petri_dish.fully_colonized_at %> ago
-      <%end%>
-    </p>
+
   </div>
   <div>
     <%= link_to 'Edit', edit_petri_dish_path(@petri_dish), class: " btn btn-secondary btn-sm"%>
-    <%= link_to 'Destroy', @petri_dish, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-secondary btn-sm"%>
+    <%= link_to 'Destroy', @petri_dish, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-secondary btn-sm" %>
     <%= link_to 'Back', petri_dishes_path, class: " btn btn-secondary btn-sm"%>
   </div>
   <div>
     <% if @petri_dish.inoculated? %>
-      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_inoculated', id: @petri_dish.id } do %>
-      <i class="fas fa-circle"></i>
+      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_not_inoculated', id: @petri_dish.id } do %>
+      <i class=>yes</i>
       <% end %>
     <% else %>
-      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_inoculated', id: @petri_dish.id } do %>
-      <i class='fas fa-times'></i>
+      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_inoculated', id: @petri_dish.id } do %>
+      <i class=>no</i>
       <% end %>
     <% end %>
+    <small class=" m-1 text-small text-muted">Inoculated <% if @petri_dish.inoculated? %>
+      <%= time_ago_in_words @petri_dish.inoculated_at %> ago
+      <%end%>
+    </small>
   </div>
   <div>
     <% if @petri_dish.run_started? %>
-      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_started', id: @petri_dish.id } do %>
-      <i class="fas fa-circle"></i>
+      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_not_started', id: @petri_dish.id } do %>
+      <i class=>yes</i>
       <% end %>
     <% else %>
-      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_started', id: @petri_dish.id } do %>
-      <i class='fas fa-times'></i>
+      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_started', id: @petri_dish.id } do %>
+      <i class=>no</i>
       <% end %>
     <% end %>
+    <small class=" m-1 text-small text-muted">Run started
+    <% if @petri_dish.run_started? %>
+      <%= time_ago_in_words @petri_dish.run_started_at %> ago
+    <%end%>
+    </small>
   </div>
   <div>
     <% if @petri_dish.fully_colonized? %>
-      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_not_fully_colonized', id: @petri_dish.id } do %>
-      <i class="fas fa-circle"></i>
+      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_not_fully_colonized', id: @petri_dish.id } do %>
+      <i class=>yes</i>
       <% end %>
     <% else %>
-      <%= link_to '#', class: '', data: { reflex: 'click->PetriDish#mark_fully_colonized', id: @petri_dish.id } do %>
-      <i class='fas fa-times'></i>
+      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_fully_colonized', id: @petri_dish.id } do %>
+      <i class=>no</i>
       <% end %>
     <% end %>
+        <small class=" m-1 text-small text-muted">Fully colonized
+      <% if @petri_dish.fully_colonized? %>
+        <%= time_ago_in_words @petri_dish.fully_colonized_at %> ago
+      <%end%>
+    </small>
   </div>
 </div>
 <div class="infotabs">
   <article class="tabs">
 
       <input class="infobar" checked id="one" name="tabs" type="radio">
-        <label class="infolabel" for="one">Progress</label>
+        <label class="infolabel" for="one">Description</label>
 
         <input class="infobar" id="two" name="tabs" type="radio" value="Two">
-        <label class="infolabel" for="two">Description</label>
+        <label class="infolabel" for="two">Protocol</label>
 
         <input class="infobar" id="three" name="tabs" type="radio">
         <label class="infolabel" for="three">Agar recipe</label>
@@ -77,32 +78,20 @@
         <div class="panels">
 
           <div class="panel">
-            <h2>Progress</h2>
-
+            <p><%= @petri_dish.description %></p>
           </div>
 
           <div class="panel">
-            <h2>Description</h2>
-            <p>Description of petri dish</p>
-            <p>Protocol</p>
+            <p><%= @petri_dish.protocol %></p>
           </div>
 
           <div class="panel">
-            <h2>Agar recipe</h2>
-            <p>Nam sodales, mi eu</p>
-
-            <p>Lorem . Sed vel felis velit. Nullam et turpis sed dui auctor vehicula quis a dui.</p>
-
-            <p>Aliquam vitae leo et </p>
+            <p>Agar recipe used: <%= @petri_dish.agar_recipe.name %></p>
           </div>
 
           <div class="panel">
-            <h2>Options</h2>
-
-
             <p>Aliquam vitae leo et sapien </p>
           </div>
-
       </div>
   </article>
 </div>

@@ -1,0 +1,24 @@
+
+<div class='container'>
+  <div class="justify-content-between">
+    <p>Agar recipes</p>
+    <p><%= link_to "new", new_agar_recipe_path, class: " btn btn-secondary btn-sm" %></p>
+  </div>
+</div>
+
+
+<div class="row">
+  <% @agar_recipes.each do |agar_recipe| %>
+    <div class="col-3">
+        <div class="task-box yellow">
+          <div class="description-task">
+            <div><%= link_to agar_recipe.name, agar_recipe %></div>
+          </div>
+        </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+

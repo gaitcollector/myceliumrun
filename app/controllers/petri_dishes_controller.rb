@@ -69,6 +69,6 @@ class PetriDishesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def petri_dish_params
-      params.require(:petri_dish).permit(:name, :inoculated, :inoculated_at, :run_started, :run_started_at, :fully_colonized, :fully_colonized_at, :recipe, :mushroom_id)
+      params.require(:petri_dish).permit(:name, :inoculated, :inoculated_at, :run_started, :run_started_at, :fully_colonized, :fully_colonized_at, :recipe, :description, :protocol, :mushroom_id, :agar_recipe_id)
     end
 end

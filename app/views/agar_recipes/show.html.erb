@@ -1,0 +1,49 @@
+
+<div class="header">
+  <h5 class=" m-1 text-small"><%= @agar_recipe.name %> (<%= @agar_recipe.abbreviation %>)</h5>
+  <h6 class=" m-1 text-small text-muted">Created <%= time_ago_in_words(@agar_recipe.created_at) %> ago</h6>
+  <div>
+    <%= link_to 'Edit', edit_agar_recipe_path(@agar_recipe), class: " btn btn-secondary btn-sm"%>
+    <%= link_to 'Destroy', @agar_recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: " btn btn-secondary btn-sm"%>
+    <%= link_to 'Back', agar_recipes_path, class: " btn btn-secondary btn-sm"%>
+  </div>
+</div>
+<div class="infotabs">
+  <article class="tabs">
+
+      <input class="infobar" checked id="one" name="tabs" type="radio">
+        <label class="infolabel" for="one">Recipe</label>
+
+        <input class="infobar" id="two" name="tabs" type="radio" value="Two">
+        <label class="infolabel" for="two">Method</label>
+
+        <input class="infobar" id="three" name="tabs" type="radio">
+        <label class="infolabel" for="three">Description</label>
+
+        <input class="infobar" id="four" name="tabs" type="radio">
+        <label class="infolabel" for="four">Options</label>
+
+        <div class="panels">
+
+          <div class="panel">
+            <p><%= @agar_recipe.recipe %></p>
+
+          </div>
+
+          <div class="panel">
+            <p><%= @agar_recipe.method %></p>
+          </div>
+
+          <div class="panel">
+            <p><%= @agar_recipe.description %></p>
+          </div>
+
+          <div class="panel">
+            <h2>some other thing</h2>
+
+            <p>Aliquam vitae leo et sapien </p>
+          </div>
+
+      </div>
+  </article>
+</div>
