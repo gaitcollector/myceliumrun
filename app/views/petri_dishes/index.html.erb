@@ -12,10 +12,17 @@
   <% @petri_dishes.each do |petri_dish| %>
     <div class="col-3">
         <div class="task-box yellow">
-          <div class="description-task">
-            <div class="time">created <%= time_ago_in_words(petri_dish.created_at) %> ago</div>
-            <div><%= link_to petri_dish.name, petri_dish %></div>
+          <div>
+            <%= link_to petri_dish.name, petri_dish %>
+            <br>
             <small class="time">From <%=petri_dish.mushroom.name%> mushroom</small>
+          </div>
+          <div class="description-task">
+            <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
+            <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
+            <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
+
+
           </div>
         </div>
     </div>

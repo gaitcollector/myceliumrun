@@ -3,7 +3,7 @@
 <div class="header">
   <h5 class=" m-1 text-small"> Petri dish name: <%= @petri_dish.name %></h5>
   <h6 class=" m-1 text-small text-muted">From <%= @petri_dish.mushroom.name %> mushroom</h6>
-  <h6 class=" m-1 text-small text-muted">Created <%= time_ago_in_words(@petri_dish.created_at) %> ago</h6>
+  <h6 class=" m-1 text-small text-muted">Created on <%= @petri_dish.created_at.strftime("%b %d, %Y") %></h6>
   <div>
 
   </div>
@@ -24,6 +24,7 @@
     <% end %>
     <small class=" m-1 text-small text-muted">Inoculated <% if @petri_dish.inoculated? %>
       <%= time_ago_in_words @petri_dish.inoculated_at %> ago
+        (<%= @petri_dish.inoculated_at.strftime("%b %d, %Y") %>)
       <%end%>
     </small>
   </div>
@@ -40,6 +41,7 @@
     <small class=" m-1 text-small text-muted">Run started
     <% if @petri_dish.run_started? %>
       <%= time_ago_in_words @petri_dish.run_started_at %> ago
+        (<%= @petri_dish.run_started_at.strftime("%b %d, %Y") %>)
     <%end%>
     </small>
   </div>
@@ -56,6 +58,7 @@
         <small class=" m-1 text-small text-muted">Fully colonized
       <% if @petri_dish.fully_colonized? %>
         <%= time_ago_in_words @petri_dish.fully_colonized_at %> ago
+          (<%= @petri_dish.fully_colonized_at.strftime("%b %d, %Y") %>)
       <%end%>
     </small>
   </div>
@@ -73,12 +76,13 @@
         <label class="infolabel" for="three">Agar recipe</label>
 
         <input class="infobar" id="four" name="tabs" type="radio">
-        <label class="infolabel" for="four">Options</label>
+        <label class="infolabel" for="four">Statistics</label>
 
         <div class="panels">
 
           <div class="panel">
             <p><%= @petri_dish.description %></p>
+            <p>Sampled from <%= @petri_dish.sample %></p>
           </div>
 
           <div class="panel">
@@ -86,11 +90,22 @@
           </div>
 
           <div class="panel">
-            <p>Agar recipe used: <%= @petri_dish.agar_recipe.name %></p>
+            <p><%= @petri_dish.agar_recipe.name %></p>
           </div>
 
           <div class="panel">
-            <p>Aliquam vitae leo et sapien </p>
+            <% if @petri_dish.inoculated & @petri_dish.run_started%>
+              <p>It took <%=TimeDifference.between(@petri_dish.inoculated_at, @petri_dish.run_started_at).in_minutes.round%>
+              days for mycelium start running</p>
+            <% else %>
+              <p>no stats on the run</p>
+            <% end %>
+            <% if @petri_dish.run_started & @petri_dish.fully_colonized %>
+              <p>and <%=TimeDifference.between(@petri_dish.run_started_at, @petri_dish.fully_colonized_at).in_minutes.round%>
+              days to colonise</p>
+            <% else %>
+              <p>and no stats on colonisation yet</p>
+            <% end %>
           </div>
       </div>
   </article>

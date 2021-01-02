@@ -4,6 +4,7 @@
       <%= f.input :mushroom_id, as: :select, collection: Mushroom.all.sort.reverse, prompt: 'Select your mushroom', label: false %>
       <%= f.input :agar_recipe_id, as: :select, collection: AgarRecipe.all.sort.reverse, prompt: 'Select your agar recipe', label: false %>
       <%= f.input :name, class: "input"%>
+      <%= f.input :sample, collection: PetriDish::SAMPLE%>
       <%= f.input :description, class: "input" %>
       <%= f.input :protocol, class: "input" %>
       <%= f.button :submit, value: 'Add', class: 'btn btn-primary btn-block' %>

@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_12_19_045835) do
 
   create_table "petri_dishes", force: :cascade do |t|
     t.string "name", null: false
+    t.string "sample"
     t.text "description", null: false
     t.text "protocol"
     t.boolean "inoculated"

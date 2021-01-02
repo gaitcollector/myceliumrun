@@ -1,7 +1,8 @@
 class CreatePetriDishes < ActiveRecord::Migration[6.0]
   def change
     create_table :petri_dishes do |t|
-      t.string :name, null: false, autocomplete: 'off'
+      t.string :name, null: false
+      t.string :sample
       t.text :description, null: false
       t.text :protocol
       t.boolean :inoculated
@@ -12,6 +13,7 @@ class CreatePetriDishes < ActiveRecord::Migration[6.0]
       t.datetime :fully_colonized_at
       t.references :mushroom, null: false, foreign_key: true
       t.references :agar_recipe, foreign_key: true
+      #Ex:- :default =>''
 
       t.timestamps
     end
