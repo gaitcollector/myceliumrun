@@ -95,13 +95,13 @@
 
           <div class="panel">
             <% if @petri_dish.inoculated & @petri_dish.run_started%>
-              <p>It took <%=TimeDifference.between(@petri_dish.inoculated_at, @petri_dish.run_started_at).in_minutes.round%>
+              <p>It took <%=TimeDifference.between(@petri_dish.inoculated_at, @petri_dish.run_started_at).in_days.round%>
               days for mycelium start running</p>
             <% else %>
               <p>no stats on the run</p>
             <% end %>
             <% if @petri_dish.run_started & @petri_dish.fully_colonized %>
-              <p>and <%=TimeDifference.between(@petri_dish.run_started_at, @petri_dish.fully_colonized_at).in_minutes.round%>
+              <p>and <%=TimeDifference.between(@petri_dish.run_started_at, @petri_dish.fully_colonized_at).in_days.round%>
               days to colonise</p>
             <% else %>
               <p>and no stats on colonisation yet</p>

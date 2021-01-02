@@ -10,22 +10,34 @@
 
 <div class="row">
   <% @petri_dishes.each do |petri_dish| %>
-    <div class="col-3">
-        <div class="task-box yellow">
-          <div>
-            <%= link_to petri_dish.name, petri_dish %>
-            <br>
-            <small class="time">From <%=petri_dish.mushroom.name%> mushroom</small>
-          </div>
-          <div class="description-task">
-            <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
-            <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
-            <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
 
-
+      <div class="col-3">
+          <div class="task-box yellow">
+            <div>
+              <%= link_to petri_dish.name, petri_dish %>
+              <br>
+              <small class="time">(<%=petri_dish.mushroom.name%>)</small>
+            </div>
+            <div class="description-task">
+              <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
+              <div class="time">
+              <% if petri_dish.inoculated? %>
+                inoculated on <%=petri_dish.inoculated_at.strftime("%b %d, %Y") %>
+              <% end %>
+              </div>
+              <div class="time">
+              <% if petri_dish.run_started? %>
+                run started on <%=petri_dish.run_started_at.strftime("%b %d, %Y") %>
+              <% end %>
+              </div>
+              <div class="time">
+              <% if petri_dish.fully_colonized? %>
+                colonised <%=petri_dish.fully_colonized_at.strftime("%b %d, %Y") %>
+              <% end %>
+              </div>
+            </div>
           </div>
-        </div>
-    </div>
+      </div>
   <% end %>
 </div>
 
