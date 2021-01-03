@@ -4,6 +4,7 @@
   <div class="justify-content-between">
     <p>Petri Dishes</p>
     <p><%= link_to "new", new_petri_dish_path, class: " btn btn-secondary btn-sm" %></p>
+    <small>You have <%=PetriDish.count%> active dish(es)</small>
   </div>
 </div>
 
@@ -17,6 +18,9 @@
               <%= link_to petri_dish.name, petri_dish %>
               <br>
               <small class="time">(<%=petri_dish.mushroom.name%>)</small>
+            </div>
+            <div class="progress" style="height: 2px;">
+              <div class="progress-bar bg-info" role="progressbar" style="width: <%= petri_dish.percent_complete%>%" aria-valuenow="<%= petri_dish.percent_complete%>" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="description-task">
               <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>

@@ -5,6 +5,8 @@ class CreatePetriDishes < ActiveRecord::Migration[6.0]
       t.string :sample
       t.text :description, null: false
       t.text :protocol
+      t.integer :percent_complete, :default => 0
+      #Ex:- :default =>''
       t.boolean :inoculated
       t.datetime :inoculated_at
       t.boolean :run_started

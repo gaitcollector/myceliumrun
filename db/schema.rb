@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_12_19_045835) do
     t.string "sample"
     t.text "description", null: false
     t.text "protocol"
+    t.integer "percent_complete", default: 0
     t.boolean "inoculated"
     t.datetime "inoculated_at"
     t.boolean "run_started"

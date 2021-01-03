@@ -4,6 +4,9 @@
   <h5 class=" m-1 text-small"> Petri dish name: <%= @petri_dish.name %></h5>
   <h6 class=" m-1 text-small text-muted">From <%= @petri_dish.mushroom.name %> mushroom</h6>
   <h6 class=" m-1 text-small text-muted">Created on <%= @petri_dish.created_at.strftime("%b %d, %Y") %></h6>
+    <div class="progress m-1 "style="height: 3px;">
+      <div class="progress-bar bg-info" role="progressbar" style="width: <%= @petri_dish.percent_complete%>%" aria-valuenow="<%= @petri_dish.percent_complete%>" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
   <div>
 
   </div>
@@ -14,11 +17,11 @@
   </div>
   <div>
     <% if @petri_dish.inoculated? %>
-      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_not_inoculated', id: @petri_dish.id } do %>
+      <%= link_to '#', class: 'btn btn-secondary m-1', data: { reflex: 'click->PetriDish#mark_not_inoculated', id: @petri_dish.id } do %>
       <i class=>yes</i>
       <% end %>
     <% else %>
-      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_inoculated', id: @petri_dish.id } do %>
+      <%= link_to '#', class: 'btn btn-secondary m-1', data: { reflex: 'click->PetriDish#mark_inoculated', id: @petri_dish.id } do %>
       <i class=>no</i>
       <% end %>
     <% end %>
@@ -30,11 +33,11 @@
   </div>
   <div>
     <% if @petri_dish.run_started? %>
-      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_not_started', id: @petri_dish.id } do %>
+      <%= link_to '#', class: 'btn btn-secondary m-1', data: { reflex: 'click->PetriDish#mark_not_started', id: @petri_dish.id } do %>
       <i class=>yes</i>
       <% end %>
     <% else %>
-      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_started', id: @petri_dish.id } do %>
+      <%= link_to '#', class: 'btn btn-secondary m-1', data: { reflex: 'click->PetriDish#mark_started', id: @petri_dish.id } do %>
       <i class=>no</i>
       <% end %>
     <% end %>
@@ -47,11 +50,11 @@
   </div>
   <div>
     <% if @petri_dish.fully_colonized? %>
-      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_not_fully_colonized', id: @petri_dish.id } do %>
+      <%= link_to '#', class: 'btn btn-secondary m-1', data: { reflex: 'click->PetriDish#mark_not_fully_colonized', id: @petri_dish.id } do %>
       <i class=>yes</i>
       <% end %>
     <% else %>
-      <%= link_to '#', class: 'btn btn-secondary', data: { reflex: 'click->PetriDish#mark_fully_colonized', id: @petri_dish.id } do %>
+      <%= link_to '#', class: 'btn btn-secondary m-1', data: { reflex: 'click->PetriDish#mark_fully_colonized', id: @petri_dish.id } do %>
       <i class=>no</i>
       <% end %>
     <% end %>
