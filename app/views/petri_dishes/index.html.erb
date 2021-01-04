@@ -22,6 +22,11 @@
             <div class="progress" style="height: 2px;">
               <div class="progress-bar bg-info" role="progressbar" style="width: <%= petri_dish.percent_complete%>%" aria-valuenow="<%= petri_dish.percent_complete%>" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
+            <div class="m-1"> <%# copy button logic %>
+              <%= link_to '#', class: 'btn-small btn-info m-1 p-1', data: { reflex: 'click->PetriDish#cloned', id: petri_dish.id } do %>
+              <i class=>clone</i>
+              <% end %>
+            </div>
             <div class="description-task">
               <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
               <div class="time">

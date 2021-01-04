@@ -50,4 +50,9 @@ class PetriDishReflex < ApplicationReflex
     @petri_dish = PetriDish.find(element.dataset.id)
     @petri_dish.update(fully_colonized: false, fully_colonized_at: nil, percent_complete: 40)
   end
+  def cloned
+    petri_dish = PetriDish.find(element.dataset.id)
+    cloned = PetriDishCloner.call(petri_dish)
+    cloned.save!
+  end
 end
