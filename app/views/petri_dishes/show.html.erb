@@ -1,11 +1,12 @@
 
 
 <div class="header">
-  <h5 class=" m-1 text-small"> Petri dish name: <%= @petri_dish.name %></h5>
+  <h5 class=" m-1 text-small"><%= @petri_dish.name %> <%= @petri_dish.serial_number %></h5>
   <h6 class=" m-1 text-small text-muted">From <%= @petri_dish.mushroom.name %> mushroom</h6>
   <h6 class=" m-1 text-small text-muted">Created on <%= @petri_dish.created_at.strftime("%b %d, %Y") %></h6>
+
     <div class="progress m-1 "style="height: 3px;">
-      <div class="progress-bar bg-info" role="progressbar" style="width: <%= @petri_dish.percent_complete%>%" aria-valuenow="<%= @petri_dish.percent_complete%>" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar bg-info" role="progressbar" style="width: <%= @petri_dish.percent_complete%>%" aria-valuenow="<%= @petri_dish.percent_complete %>" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   <div>
 
@@ -64,6 +65,20 @@
           (<%= @petri_dish.fully_colonized_at.strftime("%b %d, %Y") %>)
       <%end%>
     </small>
+  </div>
+  <div>
+    <% if @petri_dish.fully_colonized? %>
+      <% unless @petri_dish.archived? %>
+        <%= link_to '#', class: 'btn btn-secondary m-1', data: { reflex: 'click->PetriDish#archive', id: @petri_dish.id } do %>
+        <i class=>archive</i>
+        <% end %>
+      <% end %>
+      <% if @petri_dish.archived? %>
+        <%= link_to '#', class: 'btn btn-secondary m-1', data: { reflex: 'click->PetriDish#unarchive', id: @petri_dish.id } do %>
+        <i class=>unarchive</i>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 <div class="infotabs">

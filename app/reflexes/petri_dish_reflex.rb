@@ -2,23 +2,7 @@
 
 class PetriDishReflex < ApplicationReflex
   # Add Reflex methods in this file.
-  #
-  # All Reflex instances expose the following properties:
-  #
-  #   - connection - the ActionCable connection
-  #   - channel - the ActionCable channel
-  #   - request - an ActionDispatch::Request proxy for the socket connection
-  #   - session - the ActionDispatch::Session store for the current visitor
-  #   - url - the URL of the page that triggered the reflex
-  #   - element - a Hash like object that represents the HTML element that triggered the reflex
-  #   - params - parameters from the element's closest form (if any)
-  #
-  # Example:
-  #
-  #   def example(argument=true)
-  #     # Your logic here...
-  #     # Any declared instance variables will be made available to the Rails controller and view.
-  #   end
+
   #
   # Learn more at: https://docs.stimulusreflex.com
   def mark_inoculated
@@ -50,9 +34,19 @@ class PetriDishReflex < ApplicationReflex
     @petri_dish = PetriDish.find(element.dataset.id)
     @petri_dish.update(fully_colonized: false, fully_colonized_at: nil, percent_complete: 40)
   end
+
   def cloned
     petri_dish = PetriDish.find(element.dataset.id)
     cloned = PetriDishCloner.call(petri_dish)
     cloned.save!
   end
+  def archive
+    @petri_dish = PetriDish.find(element.dataset.id)
+    @petri_dish.update(archived: true)
+  end
+  def unarchive
+    @petri_dish = PetriDish.find(element.dataset.id)
+    @petri_dish.update(archived: nil)
+  end
+
 end

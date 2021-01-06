@@ -1,5 +1,13 @@
 class PetriDishCloner < Clowne::Cloner
   adapter :active_record
+  nullify :archived
+  nullify :percent_complete
+  nullify :inoculated_at
+  nullify :run_started_at
+  nullify :fully_colonized_at
+  nullify :inoculated
+  nullify :run_started
+  nullify :fully_colonized
 
 
   # include_association :mushroom
@@ -7,9 +15,9 @@ class PetriDishCloner < Clowne::Cloner
 
   # nullify :payed_at, :delivered_at
 
-  # finalize do |name|
-  #   name.update("cloned")
-  # #   record.uuid = Order.generate_uuid
-  # #   record.total_cents = OrderCalculator.call(record)
+  # finalize do |source, record, _params|
+  #   record.promotion_id = nil if source.promotion&.expired?
+  #   record.uuid = Order.generate_uuid
+  #   record.total_cents = OrderCalculator.call(record)
   # end
 end
