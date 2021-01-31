@@ -7,7 +7,7 @@ class PetriDishReflex < ApplicationReflex
   # Learn more at: https://docs.stimulusreflex.com
   def mark_inoculated
     @petri_dish = PetriDish.find(element.dataset.id)
-    @petri_dish.update(inoculated: true, inoculated_at: Time.now, percent_complete: 20)
+    @petri_dish.update(inoculated: true, inoculated_at: Time.now, percent_complete: 33)
   end
 
   def mark_not_inoculated
@@ -17,12 +17,12 @@ class PetriDishReflex < ApplicationReflex
 
   def mark_started
     @petri_dish = PetriDish.find(element.dataset.id)
-    @petri_dish.update(run_started: true, run_started_at: Time.now, percent_complete: 40)
+    @petri_dish.update(run_started: true, run_started_at: Time.now, percent_complete: 66)
   end
 
   def mark_not_started
     @petri_dish = PetriDish.find(element.dataset.id)
-    @petri_dish.update(run_started: false, run_started_at: nil, percent_complete: 20)
+    @petri_dish.update(run_started: false, run_started_at: nil, percent_complete: 33)
   end
 
   def mark_fully_colonized
@@ -32,7 +32,7 @@ class PetriDishReflex < ApplicationReflex
 
   def mark_not_fully_colonized
     @petri_dish = PetriDish.find(element.dataset.id)
-    @petri_dish.update(fully_colonized: false, fully_colonized_at: nil, percent_complete: 40)
+    @petri_dish.update(fully_colonized: false, fully_colonized_at: nil, percent_complete: 66)
   end
 
   def cloned

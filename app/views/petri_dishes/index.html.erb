@@ -1,114 +1,93 @@
 
 
-<div class='container'>
-  <div class="justify-content-between">
-    <p>Petri Dishes</p>
-    <p><%= link_to "new", new_petri_dish_path, class: " btn btn-secondary btn-sm" %></p>
-    <% if PetriDish.where(archived: nil).count < 1 %>
-      <small>You have no ative dishes</small>
-    <% elsif PetriDish.where(archived: nil).count > 1 %>
-      <small>You have <%=PetriDish.where(archived: nil).count%> active dishes</small>
-    <% else %>
-      <small>You have <%=PetriDish.where(archived: nil).count%> active dish</small>
+
+<div class="container">
+  <div class="projects-section-header">
+    <p>Petri dishes</p>
+  </div>
+  <div class="projects-section-line">
+    <div class="projects-status">
+      <div class="item-status">
+        <span class="status-number"><%=PetriDish.where(archived: nil).count%></span>
+        <span class="status-type">In Progress</span>
+      </div>
+      <div class="item-status">
+        <span class="status-number"><%=PetriDish.where(archived: true).count%></span>
+        <span class="status-type">Archived</span>
+      </div>
+      <div class="item-status">
+        <span class="status-number"><%=PetriDish.count%></span>
+        <span class="status-type">Total</span>
+      </div>
+    </div>
+    <%= link_to "new", new_petri_dish_path, class: "add-btn" %>
+  </div>
+  <div class="index-cards">
+    <% @petri_dishes.where(archived: nil).each do |petri_dish| %>
+        <div class="project-box-wrapper">
+            <div class="project-box" style="background-color: #DEC0B3;">
+              <div class="project-box-header">
+                <div class="more-wrapper">
+              </div>
+          </div>
+          <div class="project-box-content-header">
+            <p class="box-content-header"><%= link_to petri_dish.name, petri_dish, class:"box-content-header" %> <%= petri_dish.serial_number %></p>
+          <div class="box-progress-wrapper">
+            <p class="box-progress-header">Progress</p>
+            <div class="box-progress-bar">
+              <span class="box-progress" style="width:0<%= petri_dish.percent_complete%>%; background-color: #BA7D7D"></span>
+            </div>
+            <p class="box-progress-percentage"><%= petri_dish.percent_complete%>%</p>
+          </div>
+            <p class="box-content-subheader">Mushroom: <%= petri_dish.mushroom.name %></p>
+            <p class="box-content-subheader">Inoculated on
+            <% if petri_dish.inoculated %>
+                <span><%= petri_dish.inoculated_at.strftime("%b %d, %Y") %> </span>
+              <% end %></p>
+            <p class="box-content-subheader">Run started on
+              <% if petri_dish.run_started %>
+                <span><%= petri_dish.run_started_at.strftime("%b %d, %Y") %> </span>
+              <% end %></p>
+            <p class="box-content-subheader">Colonised on
+              <% if petri_dish.fully_colonized %>
+                <span><%= petri_dish.fully_colonized_at.strftime("%b %d, %Y") %> </span>
+              <% end %></p>
+          </div>
+          <div class="project-box-footer">
+
+            <div class="participants">
+              <button>
+                <%= link_to '#', data: { reflex: 'click->PetriDish#cloned', id: petri_dish.id } do %>
+                  <small>clone</small>
+                <% end %>
+              </button>
+
+
+              <button>
+                <%= link_to '#', data: { reflex: 'click->PetriDish#mark_inoculated', id: petri_dish.id } do %>
+                  <small>inoculaded</small>
+                <% end %>
+              </button>
+
+
+              <button>
+                <%= link_to '#', data: { reflex: 'click->PetriDish#mark_started', id: petri_dish.id } , class: "btn-txt" do %>
+                  <small>running</small>
+                <% end %>
+              </button>
+
+
+              <button >
+                <%= link_to '#', data: { reflex: 'click->PetriDish#mark_fully_colonized', id: petri_dish.id } do %>
+                  <small>colonised</small>
+                <% end %>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
     <% end %>
+
   </div>
 </div>
-
-
-<div class="row">
-  <% @petri_dishes.where(archived: nil).each do |petri_dish| %>
-
-      <div class="col-3">
-          <div class="task-box yellow">
-            <div>
-              <%= link_to petri_dish.name, petri_dish %> <%= petri_dish.serial_number %>
-              <br>
-              <small class="time">(<%= petri_dish.mushroom.name %>)</small>
-            </div>
-            <div class="progress" style="height: 2px;">
-              <div class="progress-bar bg-info" role="progressbar" style="width: <%= petri_dish.percent_complete%>%" aria-valuenow="<%= petri_dish.percent_complete%>" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="m-1"> <%# copy button logic %>
-              <%= link_to '#', class: 'btn-small btn-info m-1 p-1', data: { reflex: 'click->PetriDish#cloned', id: petri_dish.id } do %>
-              <i class=>clone</i>
-              <% end %>
-            </div>
-            <div class="description-task">
-              <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
-              <div class="time">
-              <% if petri_dish.inoculated? %>
-                inoculated on <%= petri_dish.inoculated_at.strftime("%b %d, %Y") %>
-              <% end %>
-              </div>
-              <div class="time">
-              <% if petri_dish.run_started? %>
-                run started on <%= petri_dish.run_started_at.strftime("%b %d, %Y") %>
-              <% end %>
-              </div>
-              <div class="time">
-              <% if petri_dish.fully_colonized? %>
-                colonised <%= petri_dish.fully_colonized_at.strftime("%b %d, %Y") %>
-              <% end %>
-              </div>
-            </div>
-          </div>
-      </div>
-  <% end %>
-</div>
-
-<%# Archived logic %>
-<div class='container'>
-  <div class="justify-content-between">
-    <p> Archived </p>
-    <% if PetriDish.where(archived: true).count < 1 %>
-      <small>You have no archived dishes</small>
-    <% elsif PetriDish.where(archived: true).count < 2 %>
-      <small>You have <%=PetriDish.where(archived: true).count%> archived dish</small>
-    <% else %>
-      <small>You have <%=PetriDish.where(archived: true).count%> archived dishes</small>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-  <% @petri_dishes.where(archived: true).each do |petri_dish| %>
-
-      <div class="col-3">
-          <div class="task-box yellow">
-            <div>
-              <%= link_to petri_dish.name, petri_dish %> <%= petri_dish.serial_number %>
-              <br>
-              <small class="time">(<%= petri_dish.mushroom.name %>)</small>
-            </div>
-            <div class="progress" style="height: 2px;">
-              <div class="progress-bar bg-info" role="progressbar" style="width: <%= petri_dish.percent_complete%>%" aria-valuenow="<%= petri_dish.percent_complete%>" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="m-1"> <%# copy button logic %>
-              <%= link_to '#', class: 'btn-small btn-info m-1 p-1', data: { reflex: 'click->PetriDish#cloned', id: petri_dish.id } do %>
-              <i class=>clone</i>
-              <% end %>
-            </div>
-            <div class="description-task">
-              <div class="time">created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </div>
-              <div class="time">
-              <% if petri_dish.inoculated? %>
-                inoculated on <%= petri_dish.inoculated_at.strftime("%b %d, %Y") %>
-              <% end %>
-              </div>
-              <div class="time">
-              <% if petri_dish.run_started? %>
-                run started on <%= petri_dish.run_started_at.strftime("%b %d, %Y") %>
-              <% end %>
-              </div>
-              <div class="time">
-              <% if petri_dish.fully_colonized? %>
-                colonised <%= petri_dish.fully_colonized_at.strftime("%b %d, %Y") %>
-              <% end %>
-              </div>
-            </div>
-          </div>
-      </div>
-  <% end %>
-</div>
-
-
-

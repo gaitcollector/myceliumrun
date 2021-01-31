@@ -1,0 +1,69 @@
+new index
+
+<div class="projects-section">
+      <div class="projects-section-header">
+        <p>Petri dishes</p>
+        <p class="time"><%= Date.today.strftime("%b %d, %Y") %></p>
+      </div>
+      <div class="projects-section-line">
+        <div class="projects-status">
+          <div class="item-status">
+            <span class="status-number"><%=PetriDish.where(archived: nil).count%></span>
+            <span class="status-type">In Progress</span>
+          </div>
+          <div class="item-status">
+            <span class="status-number"><%=PetriDish.where(archived: true).count%></span>
+            <span class="status-type">Archived</span>
+          </div>
+          <div class="item-status">
+            <span class="status-number"><%=PetriDish.count%></span>
+            <span class="status-type">Total</span>
+          </div>
+        </div>
+      </div>
+  <div class="project-boxes jsGridView">
+    <% @petri_dishes.where(archived: nil).each do |petri_dish| %>
+        <div class="project-box-wrapper">
+            <div class="project-box" style="background-color: #fee4cb;">
+              <div class="project-box-header">
+                <span>Created on <%= petri_dish.created_at.strftime("%b %d, %Y") %> </span>
+                <div class="more-wrapper">
+                  <button class="project-btn-more">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                      <circle cx="12" cy="12" r="1" />
+                      <circle cx="12" cy="5" r="1" />
+                      <circle cx="12" cy="19" r="1" /></svg>
+                  </button>
+            </div>
+          </div>
+          <div class="project-box-content-header">
+            <p class="box-content-header"><%= link_to petri_dish.name, petri_dish %> <%= petri_dish.serial_number %></p>
+            <p class="box-content-subheader">(<%= petri_dish.mushroom.name %>)</p>
+          </div>
+          <div class="box-progress-wrapper">
+            <p class="box-progress-header">Progress</p>
+            <div class="box-progress-bar">
+              <span class="box-progress" style="width: <%= petri_dish.percent_complete%>%; background-color: #ff942e"></span>
+            </div>
+            <p class="box-progress-percentage"><%= petri_dish.percent_complete%>%</p>
+          </div>
+          <div class="project-box-footer">
+            <div class="participants">
+              <button class="add-participant" style="color: #ff942e;">
+              <%= link_to '#', data: { reflex: 'click->PetriDish#cloned', id: petri_dish.id } do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"    stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
+                <path d="M12 5v14M5 12h14" />
+                </svg>
+              <% end %>
+              </button>
+            </div>
+            <div class="days-left" style="color: #ff942e;">
+              2 Days Left
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
